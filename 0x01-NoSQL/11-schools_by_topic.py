@@ -10,7 +10,8 @@ def schools_by_topic(mongo_collection, topic):
     Returns the list of school having a specific topic.
 
     Args:
-        mongo_collection (pymongo.collection.Collection): The MongoDB collection.
+        mongo_collection (pymongo.collection.Collection):
+            The MongoDB collection.
         topic (str): The topic searched.
 
     Returns:
@@ -22,9 +23,9 @@ def schools_by_topic(mongo_collection, topic):
 if __name__ == "__main__":
     client = MongoClient()
     school_collection = client.my_db.school
-
+    _topics = ["Algo", "C", "Python", "React"]
     j_schools = [
-        {'name': "Holberton school", 'topics': ["Algo", "C", "Python", "React"]},
+        {'name': "Holberton school", 'topics': _topics},
         {'name': "UCSF", 'topics': ["Algo", "MongoDB"]},
         {'name': "UCLA", 'topics': ["C", "Python"]},
         {'name': "UCSD", 'topics': ["Cassandra"]},
@@ -35,4 +36,7 @@ if __name__ == "__main__":
 
     schools = schools_by_topic(school_collection, "Python")
     for school in schools:
-        print("[{}] {} {}".format(school.get('_id'), school.get('name'), school.get('topics', "")))
+        p1 = school.get('_id')
+        p2 = school.get('name')
+        p3 = school.get('topics', "")
+        print("[{}] {} {}".format(p1, p2, p3))

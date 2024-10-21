@@ -10,8 +10,10 @@ def insert_school(mongo_collection, **kwargs):
     Inserts a new document in a MongoDB collection.
 
     Args:
-        mongo_collection (pymongo.collection.Collection): The MongoDB collection.
-        **kwargs: Arbitrary keyword arguments to be inserted as the document.
+        mongo_collection (pymongo.collection.Collection):
+            The MongoDB collection.
+        **kwargs: Arbitrary keyword arguments to be
+        inserted as the document.
 
     Returns:
         str: The _id of the newly inserted document.
@@ -23,9 +25,14 @@ def insert_school(mongo_collection, **kwargs):
 if __name__ == "__main__":
     client = MongoClient()
     school_collection = client.my_db.school
-    new_school_id = insert_school(school_collection, name="UCSF", address="505 Parnassus Ave")
+    p1 = "UCSF"
+    p2 = "505 Parnassus Ave"
+    new_school_id = insert_school(school_collection, name=p1, address=p2)
     print("New school created: {}".format(new_school_id))
 
     schools = list_all(school_collection)
     for school in schools:
-        print("[{}] {} {}".format(school.get('_id'), school.get('name'), school.get('address', "")))
+        p1 = school.get('_id')
+        p2 = school.get('name')
+        p3 = school.get('address', "")
+        print("[{}] {} {}".format(p1, p2, p3))
